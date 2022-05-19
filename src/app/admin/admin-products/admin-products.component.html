@@ -7,13 +7,13 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Price</th>
+      <th (click)="sort('title')" class="admin-product-table-title">Title &nbsp;<i class="fa fa-sort"></i></th>
+      <th (click)="sort('price')" class="admin-product-table-title">Price &nbsp;<i class="fa fa-sort"></i></th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let p of filteredProducts">
+    <tr *ngFor="let p of filteredProducts | orderBy: key: reverse | paginate: {itemsPerPage:10,currentPage:p};">
       <td>{{ p.title }}</td>
       <td>{{ p.price }}</td>
       <td>
@@ -22,3 +22,4 @@
     </tr>
   </tbody>
 </table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

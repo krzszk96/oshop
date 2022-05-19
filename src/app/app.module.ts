@@ -30,6 +30,9 @@ import { ProductService } from './product.service';
 import { CustomFormsModule } from 'ng2-validation';
 import { CommonModule } from '@angular/common';  
 
+import { OrderModule } from "ngx-order-pipe";
+import {NgxPaginationModule} from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +54,9 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     CustomFormsModule,
     CommonModule,
+    OrderModule,
+    NgxPaginationModule,
+
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
