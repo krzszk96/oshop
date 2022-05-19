@@ -2,15 +2,12 @@ import { environment } from 'src/environments/environment';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
@@ -26,6 +23,12 @@ import { AuthService } from './auth.service';
 import { AuthGuardService as AuthGuard, AuthGuardService } from './auth-guard.service';
 import { UserService } from './user.service';
 import { AdminAuthGuardService } from './admin-auth-guard.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoryService } from './category.service';
+import { FormsModule } from '@angular/forms';
+import { ProductService } from './product.service';
+import { CustomFormsModule } from 'ng2-validation';
+import { CommonModule } from '@angular/common';  
 
 @NgModule({
   declarations: [
@@ -39,11 +42,15 @@ import { AdminAuthGuardService } from './admin-auth-guard.service';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    CustomFormsModule,
+    CommonModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
@@ -59,7 +66,9 @@ import { AdminAuthGuardService } from './admin-auth-guard.service';
       {path:'check-out', component: CheckOutComponent, canActivate:[AuthGuard]},
       {path:'order-success', component: OrderSuccessComponent, canActivate:[AuthGuard]},
       {path:'my/orders', component: MyOrdersComponent, canActivate:[AuthGuard]},
-      
+            
+      {path:'admin/products/new', component: ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuardService]},
+      {path:'admin/products/:id', component: ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuardService]},
       {path:'admin/products', component: AdminProductsComponent, canActivate:[AuthGuard, AdminAuthGuardService]},
       {path:'admin/orders', component: AdminOrdersComponent, canActivate:[AuthGuard, AdminAuthGuardService]}
     ]),
@@ -69,7 +78,9 @@ import { AdminAuthGuardService } from './admin-auth-guard.service';
     AuthService,
     AuthGuardService,
     UserService,
-    AdminAuthGuardService
+    AdminAuthGuardService,
+    CategoryService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
