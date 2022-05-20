@@ -50,10 +50,19 @@ export class ShoppingCartService {
         item$.set({product: product, quantity: 1});
       }
     });
-    
+    // refactored code not working gives error below
     // ERROR TypeError: Cannot read properties of null (reading 'quantity')
     // item$.snapshotChanges().pipe(take(1)).subscribe(item => {
     //   item$.update({product: product, quantity: (item.payload.exportVal().quantity || 0) + 1});
     // });
+  }
+
+  async removeFromCart(product: Product){
+    let cartId = await this.getOrCreateCartId();
+    let item$ = this.getItem(cartId, product.key);
+    
+    item$.snapshotChanges().pipe(take(1)).subscribe(item => {
+        item$.update({product: product, quantity: item.payload.exportVal().quantity - 1});
+    });
   }
 }

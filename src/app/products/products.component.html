@@ -6,16 +6,7 @@
     <div class="row g-4 products-wrap">
       <ng-container *ngFor="let p of filteredProducts">
         <div class="col">
-          <div class="card" style="width: 15rem;">
-            <img class="card-img-top" [src]="p.imageUrl" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">{{ p.title }}</h5>
-              <p class="card-text">{{ p.price | currency:'USD': 'symbol' }}
-              </p>
-              <button (click)="addToCart(p)" class="btn btn-primary">Add to Cart</button>
-              <div>{{ getQuantity() }}</div>
-            </div>
-          </div>
+          <product-card [product]="p" [shopping-cart]="cart"></product-card>
         </div>
       </ng-container>
     </div>

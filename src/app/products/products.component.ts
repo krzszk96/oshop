@@ -13,7 +13,7 @@ import { ShoppingCartService } from '../shopping-cart.service';
 export class ProductsComponent implements OnInit, OnDestroy{
 
   @Input('product') product: Product;
-  @Input('shopping-cart') shoppingCart;
+  
 
   products: Product[] = [];
   filteredProducts: Product[];
@@ -25,7 +25,6 @@ export class ProductsComponent implements OnInit, OnDestroy{
   constructor(
     route: ActivatedRoute,
     productService: ProductService, 
-    
     private cartService: ShoppingCartService) {
 
     productService
@@ -40,26 +39,16 @@ export class ProductsComponent implements OnInit, OnDestroy{
           this.products;
       });
     });
-
-    
   }
 
   async ngOnInit() {
-    this.subscription = (await this.cartService.getCart()).snapshotChanges().subscribe(cart => this.cart = cart); 
+    this.subscription = (await this.cartService.getCart()).valueChanges().subscribe(cart => this.cart = cart); 
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  addToCart(product: Product){
-    this.cartService.addToCart(product);
-  }
-
-  getQuantity(){
-    if(!this.shoppingCart) return 0;
-    let item = this.shoppingCart.items[this.product.key];
-    return item ? item.quantity : 0 ;
-  }
+  
 
 }

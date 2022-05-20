@@ -34,6 +34,7 @@ import { OrderModule } from "ngx-order-pipe";
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ShoppingCartService } from './shopping-cart.service';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
     AdminOrdersComponent,
     LoginComponent,
     ProductFormComponent,
-    ProductFilterComponent
+    ProductFilterComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
