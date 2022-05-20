@@ -32,6 +32,8 @@ import { CommonModule } from '@angular/common';
 
 import { OrderModule } from "ngx-order-pipe";
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ShoppingCartService } from './shopping-cart.service';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductFilterComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +89,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     UserService,
     AdminAuthGuardService,
     CategoryService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })
