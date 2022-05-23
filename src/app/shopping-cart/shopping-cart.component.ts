@@ -10,14 +10,16 @@ import { ShoppingCart } from '../models/shopping-cart';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  cart$: Observable<ShoppingCart>;
+  cart$: Observable<ShoppingCart>; 
 
   constructor(private shoppingCartService: ShoppingCartService) { }
 
   async ngOnInit() {
-    
     this.cart$ =  await this.shoppingCartService.getCart();
-    
+  }
+
+  clearCart(){
+    this.shoppingCartService.clearCart();
   }
 }
 
