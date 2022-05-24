@@ -8,12 +8,10 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent {
 
-  constructor(private auth: AuthService, private router: Router) {
-  }
+  constructor(private auth: AuthService) {}
 
   login(){
     this.auth.login();
-    this.router.navigate(['/']);
   }
 
 }
