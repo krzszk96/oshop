@@ -69,7 +69,6 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
     OrderModule,
     NgxPaginationModule,
 
-
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule, 
