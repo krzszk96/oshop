@@ -1,7 +1,9 @@
-import { Component} from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { AuthService } from '../auth.service';
 import { OrderService } from '../order.service';
 import { switchMap } from 'rxjs/operators';
+import { ShoppingCart } from '../models/shopping-cart';
+import { totalmem } from 'os';
 
 @Component({
   selector: 'app-my-orders',

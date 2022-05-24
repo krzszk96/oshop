@@ -12,7 +12,14 @@
       <td>{{ order.shipping.name }}</td>
       <td>{{ order.datePlaced | date}}</td>
       <td>
-        <a href="#">View</a>
+        <ul class="list-group">
+          <li *ngFor="let item of order.items" class="list-group-item">
+            {{ item.quantity}} x {{ item.product.title }}
+            <div class="float-end">
+              {{ item.totalPrice | currency: 'USD':'symbol'}}
+            </div>
+          </li>
+        </ul>
       </td>
     </tr>
   </tbody>
